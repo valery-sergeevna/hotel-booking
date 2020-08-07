@@ -32,10 +32,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .container {
-  width: 100%;
-  max-width: 1250px;
-  padding: 0 70px;
+  max-width: 1100px;
   margin: 0 auto;
+}
+
+.logo {
+  max-width: 180px;
 }
 
 .header {
@@ -188,11 +190,11 @@ h1, h2, h3, h4, h5, h6 {
           transform: rotate(45deg);
 }
 
-.menu {
+.navbar-bottom {
   background-color: #0A223D;
 }
 
-.nav-menu {
+.navbar-menu {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -202,23 +204,34 @@ h1, h2, h3, h4, h5, h6 {
   padding: 40px 0;
 }
 
-.nav-menu__link {
+.navbar-menu__item {
+  list-style: none;
+}
+
+.navbar-menu__link {
   text-decoration: none;
   font-size: 14px;
   line-height: 18px;
   color: #FFFFFF;
 }
 
-.bread-crumb {
-  height: 50px;
+.breadcrumb-list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   font-size: 10px;
   line-height: 13px;
+  padding: 0;
+  margin: 18px 0 43px;
+}
+
+.breadcrumb-list__item {
+  list-style: none;
+}
+
+.breadcrumb-list__link {
+  text-decoration: none;
+  color: #333333;
 }
 
 .hotel {
@@ -946,6 +959,12 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 15px;
 }
 
+.footer__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
 .footer__title {
   margin-bottom: 30px;
   padding-right: 30px;
@@ -1065,7 +1084,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .form-group__item {
-  font-size: 14px;
+  font-size: 16px;
   line-height: 15px;
   font-family: "Muli";
   width: 48%;
@@ -1073,6 +1092,10 @@ h1, h2, h3, h4, h5, h6 {
   padding: 20px 30px;
   border-radius: 4px;
   margin-bottom: 20px;
+}
+
+.form-group__item:focus {
+  outline: none;
 }
 
 .form-group__text {
@@ -1099,8 +1122,7 @@ h1, h2, h3, h4, h5, h6 {
 /*media*/
 @media screen and (max-width: 1200px) {
   .container {
-    max-width: 1100px;
-    padding: 0 40px;
+    max-width: 980px;
   }
   .offers__text {
     font-size: 14px;
@@ -1118,6 +1140,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media screen and (max-width: 990px) {
+  .container {
+    max-width: 750px;
+  }
   .nav-top__item {
     -webkit-box-pack: start;
         -ms-flex-pack: start;
@@ -1208,7 +1233,7 @@ h1, h2, h3, h4, h5, h6 {
   }
   .footer__item {
     width: 50%;
-    margin-bottom: 25px;
+    margin-bottom: 10px;
   }
   .footer__logo {
     width: 25%;
@@ -1231,6 +1256,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 @media screen and (max-width: 768px) {
+  .container {
+    width: 92%;
+    max-width: 576px;
+  }
   .person__name {
     display: none;
   }
@@ -1242,24 +1271,43 @@ h1, h2, h3, h4, h5, h6 {
   }
   .nav-top {
     height: auto;
-    padding: 20px 0;
+    padding: 40px 0 20px;
+  }
+  .nav-top__item {
+    display: none;
   }
   .nav-top__item-big {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
+    display: block;
   }
   .nav-menu__link {
     display: none;
   }
+  .navbar-bottom {
+    display: none;
+  }
+  .breadcrumb-list {
+    margin-bottom: 18px;
+  }
+  .package-summery__list {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .package-summery__item_padding {
+    width: 95%;
+  }
   .search-form {
-    width: 100%;
-    margin-top: 20px;
+    display: none;
   }
   .package__link {
     -ms-flex-wrap: wrap;
         flex-wrap: wrap;
+    margin-top: 20px;
   }
   .package__item {
     width: 30%;
@@ -1306,6 +1354,23 @@ h1, h2, h3, h4, h5, h6 {
     height: 60px;
     margin-bottom: 10px;
   }
+  .footer__social {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .hotel__information {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+  }
+  .hotel__details,
+  .hotel__map {
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
 
 @media screen and (max-width: 550px) {
@@ -1330,11 +1395,6 @@ h1, h2, h3, h4, h5, h6 {
   .hotel__flash-offer {
     margin-left: 0;
   }
-  .hotel__details,
-  .hotel__map {
-    width: 100%;
-    margin-bottom: 20px;
-  }
   .offers {
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
@@ -1355,7 +1415,7 @@ h1, h2, h3, h4, h5, h6 {
     left: 10%;
   }
   .reviews__btn_next {
-    right: 15%;
+    right: 10%;
   }
   .form-group__item {
     width: 100%;

@@ -32,10 +32,11 @@ h1,h2,h3,h4,h5,h6{
 	margin:0;
 }
 .container{
-	width:100%;
-    max-width:1250px;
-    padding:0 70px;
+    max-width:1100px;
     margin:0 auto;
+}
+.logo{
+    max-width: 180px;
 }
 .header{
     width:100%;
@@ -129,13 +130,16 @@ h1,h2,h3,h4,h5,h6{
         transform: rotate(45deg);
     }
 }
-.menu{
+.navbar-bottom{
     background-color: $colorBlue;
 }
-.nav-menu{
+.navbar-menu{
     display: flex;
     justify-content: space-between;
     padding: 40px 0;
+    &__item{
+        list-style:none;
+    }
     
     &__link{
         text-decoration: none;
@@ -145,14 +149,21 @@ h1,h2,h3,h4,h5,h6{
     }
 }
 
-.bread-crumb{
-    height:50px;
+.breadcrumb-list{
     display: flex;
-    align-items: center;
     font-size: 10px;
     line-height: 13px;
+    padding:0;
+    margin: 18px 0 43px; 
+    &__item{
+        list-style:none;
+    }
+    
+    &__link{
+        text-decoration: none;
+        color:$colorBlack;
+    }
 }
-
 .hotel{
     display: flex;
     flex-direction: column;
@@ -668,6 +679,11 @@ h1,h2,h3,h4,h5,h6{
     color: #BDBDBD;
     font-size: 14px;
     line-height: 15px;
+    &__list{
+        margin:0;
+        padding:0;
+        list-style:none;
+    }
     &__title{
         margin-bottom: 30px;
         padding-right: 30px;
@@ -748,7 +764,7 @@ h1,h2,h3,h4,h5,h6{
         align-items: center;
     }
     &__item{
-        font-size: 14px;
+        font-size: 16px;
         line-height: 15px;
         font-family: "Muli";
         width:48%;
@@ -756,6 +772,9 @@ h1,h2,h3,h4,h5,h6{
         padding: 20px 30px;
         border-radius: 4px;
         margin-bottom:20px;
+    }
+    &__item:focus{
+        outline:none;
     }
     &__text{
         width:100%;
@@ -780,8 +799,7 @@ h1,h2,h3,h4,h5,h6{
 /*media*/
 @media screen and (max-width: 1200px){
     .container{
-        max-width:1100px;
-        padding: 0 40px;
+        max-width:980px;
     }
     .offers__text{
         font-size:14px;
@@ -798,6 +816,9 @@ h1,h2,h3,h4,h5,h6{
     }
  }
 @media screen and (max-width: 990px){
+    .container{
+        max-width:750px;
+    }
     .nav-top__item{
         justify-content: flex-start;
     }
@@ -877,7 +898,7 @@ h1,h2,h3,h4,h5,h6{
     .footer{
         &__item{
             width:50%;
-            margin-bottom: 25px;
+            margin-bottom: 10px;
         }
         &__logo{
             width:25%;
@@ -900,6 +921,10 @@ h1,h2,h3,h4,h5,h6{
   
  }
 @media screen and (max-width: 768px){
+    .container{
+        width:92%;
+        max-width:576px;
+    }
     .person__name{
         display: none;
     }
@@ -911,20 +936,36 @@ h1,h2,h3,h4,h5,h6{
     }
     .nav-top{
         height: auto;
-        padding: 20px 0;
-    }
-    .nav-top__item-big{
-        flex-direction: column;
+        padding: 40px 0 20px;
+        &__item{
+            display: none;
+        }
+        &__item-big{
+            flex-direction: column;
+            display: block;
+        }
     }
     .nav-menu__link{
         display: none;
     }
+    .navbar-bottom{
+        display: none;
+    }
+    .breadcrumb-list{
+        margin-bottom:18px;
+    }
+    .package-summery__list{
+        flex-direction: column;
+    }
+    .package-summery__item_padding {
+        width:95%;
+    }
     .search-form{
-        width: 100%;
-        margin-top: 20px;
+        display: none;
     }
     .package__link{
         flex-wrap:wrap;
+        margin-top: 20px;
     }
     .package__item{
         width:30%;
@@ -970,6 +1011,17 @@ h1,h2,h3,h4,h5,h6{
             height:60px;
             margin-bottom: 10px;
         }
+        &__social{
+            flex-direction: column;
+        }
+    }
+    .hotel__information{
+        flex-direction: column;
+    }
+    .hotel__details,
+    .hotel__map{
+        width:100%;
+        margin-bottom:20px; 
     }
     
 }
@@ -986,11 +1038,6 @@ h1,h2,h3,h4,h5,h6{
     }
     .hotel__flash-offer{
         margin-left:0;
-    }
-    .hotel__details,
-    .hotel__map{
-        width:100%;
-        margin-bottom:20px; 
     }
     .offers{
         flex-direction: column;
@@ -1009,7 +1056,7 @@ h1,h2,h3,h4,h5,h6{
         left: 10%;
     }
     .reviews__btn_next{
-        right:15%;
+        right:10%;
     }
     .form-group__item{
         width:100%;
