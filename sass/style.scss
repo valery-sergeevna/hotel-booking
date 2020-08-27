@@ -3,20 +3,31 @@ $colorBlue: #0A223D;
 $colorWhite: #FFFFFF;
 $colorBlack: #333333;
 $colorBg:  #F5FAFE;
+$roundedTop: 8px 8px 0 0;
+$roundedBottom: 0 0 8px 8px;
+$roundedLeft: 8px 0 0 8px;
+$roundedRight: 0 8px 8px 0;
+
+@mixin font($size, $lineHeight, $color: $colorBlack) {
+    font-size: $size;
+    line-height: $lineHeight;
+    color: $color;
+}
 
 @font-face {
     font-family: "MuliBold";  
     src: url("../assets/fonts/Muli-Bold.ttf") format("truetype"); 
     font-style: normal; 
     font-weight: bold;
-     }
+}
      
 @font-face{
     font-family: "Muli";
     src: url("../assets/fonts/Muli-Light.ttf") format("truetype");
     font-style: normal; 
     font-weight: normal; 
-    }
+}
+
 body{
     font-family: "Muli";
     box-sizing: border-box;
@@ -31,6 +42,10 @@ body{
 h1,h2,h3,h4,h5,h6{
 	margin:0;
 }
+input:focus,
+input:active{
+    outline:none;
+}
 .container{
     max-width:1100px;
     margin:0 auto;
@@ -38,18 +53,20 @@ h1,h2,h3,h4,h5,h6{
 .logo{
     max-width: 180px;
 }
+.content_center{
+    text-align: center;
+}
+
 .header{
     width:100%;
+    position: relative;
     &-intro{
         display: flex;
         justify-content: space-between;
         align-items: center;
         width:100%;
         height:60px;
-        font-size: 10px;
-        line-height: 13px;
-        color: #333333;
-
+        @include font(10px, 13px);
         &__icon{
             display: flex;
             justify-content: space-between;
@@ -85,6 +102,12 @@ h1,h2,h3,h4,h5,h6{
         }
     }
 }
+.burger-menu{
+    display: none;
+}
+.nav-toggle{
+    display: none;
+}
 
 .search-form{
     width:50%;
@@ -92,14 +115,13 @@ h1,h2,h3,h4,h5,h6{
     justify-content: center;
     align-items: center;
     &__input{
-        font-size: 12px;
-        line-height: 15px;
+        @include font(14px, 15px);
         width:70%;
         height:40px;
-        color:$colorBlack;
         background: #F5FAFE;
-        border-radius: 6px 0 0 6px;
+        border-radius: $roundedLeft;
         border:1px solid rgb(187, 182, 182);
+        margin:0;
     }   
     &__button{
         display: flex;
@@ -108,7 +130,7 @@ h1,h2,h3,h4,h5,h6{
         background: $colorRed;
         width:20%;
         height:40px;
-        border-radius: 0px 6px 6px 0px;
+        border-radius: $roundedRight;
         & img{
             width:25%;
         }
@@ -132,36 +154,42 @@ h1,h2,h3,h4,h5,h6{
 }
 .navbar-bottom{
     background-color: $colorBlue;
-}
-.navbar-menu{
-    display: flex;
-    justify-content: space-between;
-    padding: 40px 0;
-    &__item{
-        list-style:none;
+    .navbar-menu{
+        height:100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+        &__item{
+            text-align: center;
+            list-style:none;
+            padding: 10px;
+            &:hover a{
+                color:$colorRed;
+            }
+            &.active a{
+                color:$colorRed;
+            }
+        }
+        &__link{
+            text-decoration: none;
+            @include font(14px, 18px, $colorWhite);
+        }
+       
     }
-    
-    &__link{
-        text-decoration: none;
-        font-size: 14px;
-        line-height: 18px;
-        color:$colorWhite;
-    }
 }
-
 .breadcrumb-list{
+    @include font(10px, 13px);
     display: flex;
-    font-size: 10px;
-    line-height: 13px;
     padding:0;
-    margin: 18px 0 43px; 
+    margin: 18px 0 33px; 
     &__item{
         list-style:none;
-    }
-    
-    &__link{
-        text-decoration: none;
-        color:$colorBlack;
+        & + &:before {
+            display: inline-block;
+            color: $colorBlack;
+            content: "/";
+        }
     }
 }
 .hotel{
@@ -176,8 +204,7 @@ h1,h2,h3,h4,h5,h6{
     }
     &__title{
         font-family: "MuliBold";
-        font-size: 24px;
-        line-height: 30px;
+        @include font(24px, 30px);
     }
     &__offer{
         display: flex;
@@ -185,32 +212,26 @@ h1,h2,h3,h4,h5,h6{
         align-items: center;
     }
     &__flash-offer{
+        @include font(12px, 13px, $colorWhite);
         margin-left: 15px;
         background: $colorRed;
         border-radius: 3px;
-        font-size: 12px;
-        line-height: 13px;
         padding: 5px 15px;
-        color:$colorWhite;
     }
     &__text{
         margin:5px 0;
-        font-size: 12px;
-        line-height: 15px;
+        @include font(12px, 15px);
     }
     &-rating{
         display: flex;
         flex-direction: column;
-        font-size: 10px;
-        line-height: 10px;
+        @include font(10px, 10px, $colorWhite);
         text-align: center;
         background: $colorRed;
         border-radius: 4px;
         padding: 10px;
-        color:$colorWhite;
         &__score{
-            font-size: 16px;
-            line-height: 18px;
+            @include font(16px, 18px, inherit);
         }
     }
     &__body{
@@ -249,6 +270,7 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .button{
+    @include font(14px, 19px, $colorWhite);
     display:inline-block;
     padding: 15px 25px;
     margin:0 auto;
@@ -257,13 +279,13 @@ h1,h2,h3,h4,h5,h6{
     background-color: $colorRed;
     border-radius: 4px;
     text-align: center;
-    font-size: 14px;
-    line-height: 19px;
     font-family: "MuliBold";
     cursor: pointer;
     transition: .2s linear;
+    border: none;
+    text-transform: uppercase;
     &:hover{
-        background-color:rgba($colorRed, 0.6);
+        background-color:darken($colorRed, 20%);
     }
 }
 
@@ -276,11 +298,9 @@ h1,h2,h3,h4,h5,h6{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 12px;
-    line-height: 16px;
+    @include font(12px, 16px, $colorWhite);
     &__num{
-        font-size: 24px;
-        line-height: 33px;
+        @include font(24px, 33px, inherit);
         font-family: "MuliBold";
     }
     &__item{
@@ -305,26 +325,33 @@ h1,h2,h3,h4,h5,h6{
     display: flex;  
     flex-direction: column;
     &__title{
-        font-size: 24px;
-        line-height: 30px;
+        @include font(24px, 30px);
         text-transform: uppercase;
-        color:$colorBlack;
         margin-bottom: 30px;
         font-family: "MuliBold";
+        text-align: left;
     }
     &__link{
         display: flex;
         justify-content: space-between;
+        position: relative;
         margin-top: 67px; 
         font-family: "MuliBold";   
+        .slick-prev{
+            top:30%;
+            left:0;
+        }
+        .slick-next{
+            top:30%;
+            right:0;
+        }
     }
     &__item{
+        @include font(14px, 18px);
         text-decoration: none;
-        color:$colorBlack;
         position: relative;
-        font-size: 14px;
-        line-height: 18px;
         transition: color .2s linear;
+        cursor: pointer;
         &:hover{
             color:$colorRed;
             &:after{
@@ -360,8 +387,7 @@ h1,h2,h3,h4,h5,h6{
 }
 .package-summery{
     margin-top: 40px;
-    font-size: 12px;
-    line-height: 15px;
+    @include font(12px, 15px);
     &__details{
         display: flex;
         flex-wrap:wrap;
@@ -369,12 +395,10 @@ h1,h2,h3,h4,h5,h6{
         padding-bottom:20px;  
     }
     &__title{
-        font-size: 14px;
-        line-height: 18px;
-        color:$colorWhite;
+        @include font(14px, 18px, $colorWhite);
         background-color: $colorBlue;
         padding: 20px;
-        border-radius: 6px 6px 0px 0px;
+        border-radius: $roundedTop;
     }
     &__unit{
         width:47%;
@@ -424,18 +448,131 @@ h1,h2,h3,h4,h5,h6{
         margin-bottom: 20px;  
     }
 }
+.info{
+    @include font(12px, 20px);
+    & span{
+        display: inline-block;
+        margin-bottom: 10px;
+        font-weight: bold;
+    }
+    & p{
+        padding: 0 10px;
+    }
+    &__title{
+        background-color: $colorBlue;
+        color:$colorWhite;
+        border-radius: 6px;
+        padding: 10px 7px;
+    }
+    &__title:before{
+        content: '✓';
+        display: inline-block;
+        margin-right: 8px;
+    }
+}
+.rooms-choise{
+    display: flex;
+    align-items: center;
+    &__button{
+        margin:0;
+    }
+}
+input, select{
+    margin-right: 10px;
+    margin-bottom: 5px;
+    font-size: 14px;
+    font-family: "Muli";
+    border: 1px solid #BDBDBD;
+    padding: 5px;
+}
+
+.free-room{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    text-align: left;
+    &__info{
+        border-radius: $roundedRight;
+        border:1px solid #BDBDBD;
+        background-color: $colorWhite;
+        padding: 20px;
+        width:50%;
+        font-size: 14px;
+        position: relative;
+    }
+    &__title{
+        color: $colorBlue;
+        font-family: "MuliBold";
+    }
+    &__item{
+        display: flex;
+        width:48%;
+        margin-bottom: 30px;
+        transition: .2s linear;
+        border-radius: 8px ;
+        &:hover{
+            box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+        }
+    }
+}
+.room-details{
+    position: absolute;
+    bottom:0;
+    left:0;
+    display: block;
+    width:100%;
+    padding: 12px 5px;
+    background-color: $colorBlue;
+    color: $colorWhite;
+    text-decoration: none;
+    text-align: center;
+    &:hover{
+        text-decoration: underline;
+    }
+}
+.room-img{
+    width:50%;
+    max-width:280px;
+    border-radius: $roundedLeft;
+}
+.attractions{
+    margin:0 auto;
+    .slick-prev{
+        left:10%;
+    }
+    .slick-dots{
+        bottom:-50px;
+        button{
+            background: #BDBDBD;
+            border-radius:50%;
+            width:5px;
+            height:5px;
+            padding:3px;
+        }
+    }
+    .slick-next{
+        right:10%;
+    }
+    .slick-active button{
+            background: $colorBlack;
+    }
+    &__img{
+        width:95%;
+        max-width:450px;
+        display: block;
+        margin: 0 auto;
+    }
+}
 .all-title{
-    font-size: 36px;
-    line-height: 45px;
+    @include font(36px, 45px);
     text-align: center;
     text-transform: uppercase;
     margin-bottom: 30px;
-    color:$colorBlack;
 }
 .all-packages{
-    font-size: 12px;
-    line-height: 15px;
-    color:$colorWhite;
+    @include font(12px, 15px, $colorWhite);
     padding:40px 0;
     text-align: center;
     
@@ -443,6 +580,11 @@ h1,h2,h3,h4,h5,h6{
         width:30%;
         margin-top: 30px;
         text-align: left;
+        border-radius: 8px;
+        transition: box-shadow .2s linear;
+        &:hover{
+            box-shadow: 2px 0 10px rgba(0,0,0,0.5);
+        }
     }
     &__item_big{
         width:65%;
@@ -458,19 +600,17 @@ h1,h2,h3,h4,h5,h6{
     display: flex;
     position: relative;
     &__title{
-        font-size: 18px;
-        line-height: 23px;
+        @include font(18px, 23px, inherit);
         margin-bottom:15px;
     }
     &__text{
-        font-size: 14px;
-        line-height: 160.6%;
+        @include font(14px, 160.6%, inherit);
         margin-bottom: 21px;
     }
     &__item{
         width:50%;
         max-width:400px;
-        border-radius: 0px 8px 8px 0px;
+        border-radius: $roundedRight;
     }
     &__item_blue{
         background-color: $colorBlue;
@@ -480,7 +620,7 @@ h1,h2,h3,h4,h5,h6{
         background: url('../assets/img/package/flash-offer.jpg') no-repeat;
         background-size: cover;
         padding:0;
-        border-radius: 8px 0px 0px 8px;
+        border-radius: $roundedLeft;
     }
     &__photo{
         width:100%;
@@ -505,8 +645,7 @@ h1,h2,h3,h4,h5,h6{
         margin-top: 20px;
         align-items: center;
         &__current{
-            font-size: 24px;
-            line-height: 30px;
+            @include font(24px, 30px, inherit);
             margin:7px 0 30px;
             font-family: "MuliBold";
         }
@@ -525,11 +664,11 @@ h1,h2,h3,h4,h5,h6{
     }
     &__item_other{
         width:100%;
-        border-radius: 0px 0px 8px 8px;
+        border-radius: $roundedBottom;
     }
     &__item_background{
         height:210px;
-        border-radius: 8px 8px 0px 0px;
+        border-radius: $roundedTop;
     }
 }
 .book1{
@@ -546,18 +685,24 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .reviews{
+    @include font(12px, 160%);
     padding:60px 0;
     text-align: center;
-    font-size: 12px;
-    line-height: 160%;
-    position: relative;
+    &__photo{
+        width:100%;
+        max-width:120px;
+        border-radius: 100%;
+    }
     &__text{
         width:48%;
         margin:33px auto 80px;
         text-align: justify;
     }
-    &__photo{
-        margin-top:70px;
+    img{
+        margin: 40px auto;
+    }
+    .offers__stars{
+        margin-top:10px;
     }
     &__name{
         margin-bottom: 10px;
@@ -565,34 +710,43 @@ h1,h2,h3,h4,h5,h6{
     &__status{
         margin:0;
     }
-    &__btn{
-        position: absolute;
-        top:55%;
-        border: solid $colorBlack;
-        border-width: 0 2px 2px 0;
-        display: inline-block;
-        padding:5px;
-       
+}
+.slick-arrows{
+    position: absolute;
+    top:50%;
+    border: solid $colorBlack;
+    border-width: 0 2px 2px 0;
+    width: 12px;
+    height:12px;
+    display: inline-block;
+    padding:2px; 
+    cursor: pointer;
+    z-index:1000;
+}
+.slick-prev{
+    @extend .slick-arrows;
+    transform: rotate(135deg);
+    left:15%;
+    &:before{
+        display: none;
     }
-    &__btn_previous{
-        transform: rotate(135deg);
-        left:15%;
-    }
-    &__btn_next{
-        transform: rotate(-45deg);
-        right:15%;
+}
+.slick-next{
+    @extend .slick-arrows;
+    transform: rotate(-45deg);
+    right:15%;
+    &:before{
+        display: none;
     }
 }
 .subscribe{
+    @include font(24px, 30px, $colorWhite);
     background: linear-gradient(to bottom, rgba(10, 34, 61, 0.8)), url("../assets/img/bg.jpg");
     height:260px;
     display: flex;
     flex-wrap:wrap;
     justify-content: space-around;
     align-items: center;
-    color:$colorWhite;
-    font-size: 24px;
-    line-height: 30px;
     padding:0 100px;
     &__title{
         font-size: 36px;
@@ -604,23 +758,22 @@ h1,h2,h3,h4,h5,h6{
     &-form{
         display: flex;
         justify-content: center;
+        width:50%;
         &__input{
+            @include font(14px, 18px, rgb(75, 75, 75));
             padding: 10px;
-            max-width:320px;
+            width:60%;
+            max-width:340px;
+            border-radius:$roundedLeft;
             height:55px;
-            font-size: 14px;
-            line-height: 18px;
-            color: rgb(75, 75, 75);
-
+            margin:0;
         }
         &__button{
+            @include font(14px, 15px, $colorWhite);
             background: $colorRed;
             border-radius: 0px 4px 4px 0px;
             padding: 20px 30px;
             border:none;
-            color:$colorWhite;
-            font-size: 12px;
-            line-height: 15px;
             cursor:pointer;
         }
     }
@@ -629,9 +782,8 @@ h1,h2,h3,h4,h5,h6{
 .activity{
     padding: 60px 0 90px;
     &__title{
+        @include font(24px, 30px,$colorWhite);
         font-family: "MuliBold";
-        font-size: 24px;
-        line-height: 30px;
         margin-bottom: 57px;
     }
 }
@@ -640,8 +792,7 @@ h1,h2,h3,h4,h5,h6{
     justify-content: space-between;
     flex-wrap:wrap;
     color: $colorWhite;
-    font-size: 16px;
-    line-height: 20px;
+    @include font(16px, 20px, $colorWhite);
     &__item{
         width:25%;
         max-width:255px;
@@ -674,11 +825,9 @@ h1,h2,h3,h4,h5,h6{
 }
 
 .footer{
+    @include font(14px, 15px, #BDBDBD);
     background-color: $colorBlue;
     padding: 60px 0 15px;
-    color: #BDBDBD;
-    font-size: 14px;
-    line-height: 15px;
     &__list{
         margin:0;
         padding:0;
@@ -687,9 +836,7 @@ h1,h2,h3,h4,h5,h6{
     &__title{
         margin-bottom: 30px;
         padding-right: 30px;
-        font-size: 18px;
-        line-height: 23px;
-        color: $colorWhite;
+        @include font(18px, 23px,$colorWhite);
     }
     &__wrapper{
         display: flex;
@@ -702,6 +849,11 @@ h1,h2,h3,h4,h5,h6{
         text-decoration: none;
         margin-bottom: 7px;
         color: #BDBDBD;
+        line-height:20px;
+        &:hover{
+            text-decoration: underline;
+            color: $colorWhite;
+        }
     }
     &__social{
         display: flex;
@@ -716,17 +868,24 @@ h1,h2,h3,h4,h5,h6{
         align-items: center;
         margin: 10px 0;
         padding: 0 25px;
+
+        a{
+            text-decoration: none;
+            color:inherit;
+            &:hover{
+                color:white;
+                text-decoration: underline;
+            }
+        }
     }
     &__info{
         margin-bottom: 30px;
     }
     &__text{
-        font-size: 14px;
-        line-height: 160%;
+        @include font(14px, 160%,#BDBDBD);
         margin:0;
         padding: 0 10px;
         text-decoration: none;
-        color: #BDBDBD;
     }
     &__item_width{
         width:57%;
@@ -737,9 +896,7 @@ h1,h2,h3,h4,h5,h6{
         position: relative;
         &__link{
             text-decoration: none;
-            font-size: 12px;
-            line-height: 15px;
-            color:$colorWhite;
+            @include font(14px, 15px, $colorWhite);
             padding: 0 10px;
         }
         &__icon{
@@ -764,10 +921,10 @@ h1,h2,h3,h4,h5,h6{
         align-items: center;
     }
     &__item{
-        font-size: 16px;
-        line-height: 15px;
+        @include font(16px, 15px);
         font-family: "Muli";
         width:48%;
+        margin: 0;
         height:50px;
         padding: 20px 30px;
         border-radius: 4px;
@@ -790,9 +947,7 @@ h1,h2,h3,h4,h5,h6{
         position: absolute;
         bottom:5%;
         right:0;
-        color: #E0E0E0;
-        font-size: 12px;
-        line-height: 15px;
+        @include font(12px, 15px,#BDBDBD);
     }
 }
 
@@ -925,120 +1080,224 @@ h1,h2,h3,h4,h5,h6{
         width:92%;
         max-width:576px;
     }
-    .person__name{
+    .nav-toggle{
+        display: block;
+        position: absolute;
+        top:30px;
+        right:25px;
+        width:35px;
+        height:25px;
+        & span{
+            display: block;
+            font-size: 30px;
+        }
+    }
+    .header-intro{
         display: none;
+      }
+    .person{
+        & &__name {
+        display: none;
+        }
+        &__photo {
+            margin-right: 10px;
+            width:60px;
+         }
+        &__menu{
+        display: none;
+        }
     }
-    .person__photo{
-        margin-right: 10px;
-    }
-    .logo{
-        width:100%;
-    }
-    .nav-top{
+      .logo {
+        width: 100%;
+      }
+      .subscribe-form{
+          width:100%;
+      }
+      .nav-top {
         height: auto;
         padding: 40px 0 20px;
-        &__item{
+        &__item {
             display: none;
-        }
-        &__item-big{
+          }
+        &__item-big {
             flex-direction: column;
             display: block;
         }
-    }
-    .nav-menu__link{
+      }
+      .navbar-bottom {
         display: none;
-    }
-    .navbar-bottom{
+      }
+      .breadcrumb-list {
+        margin-bottom: 18px;
+      }
+      .package-summery__list {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+      }
+      .package-summery__item_padding {
+        width: 95%;
+      }
+      .search-form {
         display: none;
-    }
-    .breadcrumb-list{
-        margin-bottom:18px;
-    }
-    .package-summery__list{
-        flex-direction: column;
-    }
-    .package-summery__item_padding {
-        width:95%;
-    }
-    .search-form{
-        display: none;
-    }
-    .package__link{
-        flex-wrap:wrap;
-        margin-top: 20px;
-    }
-    .package__item{
-        width:30%;
-        margin-bottom:30px;
-    }
-    .package-summery__unit{
+      }
+      .burger{
+        &-item{
+            display: flex;
+            flex-direction: column;
+            color:white;
+            text-align: center;
+            align-items: center;
+        }
+        &-menu{
+            position: absolute;
+            top:0;
+            background-color: rgba(10, 34, 61, 0.9);
+            z-index:1000;
+            padding: 45px 20px 25px;
+            width:100%;
+            height:100vh;
+            color:white;
+            &__close{
+                position: absolute;
+                top:23px;
+                right:35px;
+                font-size: 30px;
+              }
+            &__list{
+                list-style: none;
+                text-align: center;
+                padding:0;
+                .navbar-menu__link{
+                    display: block;
+                    margin-bottom:20px;
+                    font-size: 18px;
+                    text-decoration: none;
+                    color:$colorWhite;
+                    &:hover{
+                        color:$colorRed;
+                    }
+                }
+            }
+          }
+      }
+      .search-form_visible{
+        display: flex;
+        margin:0;
         width:100%;
-    }
-    .details__item{
-        margin-bottom:20px;
-    }
-    .details__unit{
-        width:50%;
-    }
-    .all-packages{
+        margin-bottom: 50px;
+      }
+      .search-form__input{
+        width:70%;
+        font-size: 16px;    
+      }
+      .search-form__button{
+        width:15%;
+      }
+      .search-form__button img {
+        width:20px;
+      }
+      .package{
+        &__link {
+            -ms-flex-wrap: wrap;
+                flex-wrap: wrap;
+            margin-top: 20px;
+        }
+        &__item {
+            width: 30%;
+            margin-bottom: 30px;
+        }
+        &-summery__unit {
+            width: 100%;
+        }
+      }
+      .details__item {
+        margin-bottom: 20px;
+      }
+      .details__unit {
+        width: 50%;
+      }
+      .all-packages {
         padding: 10px 0;
-        &__item{
-            width:90%;
+        &__item {
+            width: 90%;
             max-width: 350px;
             margin: 15px auto;
-        }
-        &__item_big{
-            width:100%;
+          }
+        &__item_big {
+            width: 100%;
             max-width: 500px;
         }
-    }
-    .all-title{
+      }
+      
+      .all-title {
         padding: 0 40px;
-    }
-    .reviews__photo{
-        margin-top: 20px;
-    }
-    .reviews__text{
-        width:70%;
-        margin-bottom:30px;
-    }
-    .footer{
+      }
+      .reviews{
+          padding-bottom:20px;
+          &__photo {
+            margin-top: 20px;
+          }
+          &__text {
+            width: 70%;
+            margin-bottom: 30px;
+          }
+      }
+      .footer {
         padding-top: 20px;
-        &__wrapper{
+        &__wrapper {
             padding: 20px 5px;
-        }
-        &-bottom{
-            height:60px;
+          }
+          &-bottom {
+            height: 60px;
             margin-bottom: 10px;
-        }
-        &__social{
-            flex-direction: column;
-        }
+          }
+          &__social {
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                    flex-direction: column;
+          }
+          &__title{
+              margin-bottom:10px;
+          }
+      }
+      .hotel__information {
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+                flex-direction: column;
+      }
+      .hotel__details,
+      .hotel__map {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      .slick-prev{
+        left: 7%;
     }
-    .hotel__information{
-        flex-direction: column;
+    .slick-next{
+        right:7%;
     }
-    .hotel__details,
-    .hotel__map{
+    .free-room__item{
         width:100%;
-        margin-bottom:20px; 
     }
-    
 }
 @media screen and (max-width: 550px){
-    .header-intro{
-        display: none;
+    .hotel{
+        &__information{
+            flex-direction: column;
+        }
+        &__offer{
+            flex-direction: column;
+            align-items: start;
+        }
+        &__flash-offer{
+            margin-left:0;
+        }
     }
-    .hotel__information{
-        flex-direction: column;
-    }
-    .hotel__offer{
-        flex-direction: column;
-        align-items: start;
-    }
-    .hotel__flash-offer{
-        margin-left:0;
-    }
+    
     .offers{
         flex-direction: column;
         &__item{
@@ -1046,17 +1305,11 @@ h1,h2,h3,h4,h5,h6{
         }
         &__item_bg{
             height:200px;
-            border-radius: 8px 8px 0px 0px;
+            border-radius: $roundedTop;
         }
         &__item_blue{
-            border-radius: 0px 0px 8px 8px;
+            border-radius: $roundedBottom;
         }
-    }
-    .reviews__btn_previous{
-        left: 10%;
-    }
-    .reviews__btn_next{
-        right:10%;
     }
     .form-group__item{
         width:100%;
@@ -1065,8 +1318,34 @@ h1,h2,h3,h4,h5,h6{
         width:90%;
         max-width: 350px;
     }
+    .package__item{
+        font-size: 16px;
+        &:after{
+            width:40%;
+        }
+    }
+    .package__link{ 
+        .slick-arrows{
+            width: 4px;
+            height:4px;
+        }
+        .slick-prev{
+            top:35%;
+            left:10%;
+        }
+        .slick-next{
+            top:35%;
+            right:10%;
+        }
+    }
     .activities__item{
         width:90%;
+    }
+    .free-room__item{
+        flex-direction: column;
+    }
+    .rooms-choise{
+        flex-direction: column;
     }
 }
 
@@ -1085,27 +1364,68 @@ h1,h2,h3,h4,h5,h6{
     .details__title{
         margin-top: 10px;
     }
-    .footer__contacts{
-        padding: 0;
-        text-align: justify;
-    }
-    .footer__item{
-        width:100%;
-        text-align: center;
-    }
-    .footer__logo{
-        max-width: 100px;
-    }
-    .footer__title{
-        padding-right: 0;
-    }
-    .footer-bottom{
-        margin-top:10px;
+    .footer{
+        &__contacts{
+            padding: 0;
+            text-align: justify;
+        }
+        &__item{
+            width:100%;
+            text-align: center;
+        }
+        &__logo{
+            max-width: 100px;
+        }
+        &__title{
+            padding-right: 0;
+        }
+        &-bottom{
+            margin-top:10px;
+        }
     }
     .button_margin_top{
         margin-top: 10px;
     }
 }
+
+//class for js
+  .open{
+    display: block;
+  }
+  .animation{
+    animation-name: slide-in-right;
+    animation-duration: 0.5s;
+  }
+  .hide{
+    display: none;
+  }
+  .tabs_animation{
+    animation-name: fade-in ;
+    animation-duration: 1s;
+  }
+
+//animation
+  @keyframes slide-in-right {
+    0% {
+      -webkit-transform: translateX(1000px);
+              transform: translateX(1000px);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: translateX(0);
+              transform: translateX(0);
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fade-in {
+    0% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 
 
 
