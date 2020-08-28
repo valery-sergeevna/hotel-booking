@@ -97,7 +97,7 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     };
 
-    const showTabs = (i = 4) => {
+    const showTabs = (i = 0) => {
         tabs[i].classList.add('package__item_active');
         tabsContent[i].classList.add('open', 'tabs_animation');
         tabsContent[i].classList.remove('hide');
@@ -118,6 +118,24 @@ window.addEventListener("DOMContentLoaded", () => {
 
             });
         }
+    });
+
+    //accordion
+    const btns = document.querySelectorAll('.accordion__btn'),
+        headings = document.querySelectorAll('.accordion__heading'),
+        accordionContent = document.querySelectorAll('.accordion__block');
+
+    btns.forEach((btn, i) => {
+        btn.addEventListener('click', () => {
+            headings[i].classList.toggle('active');
+            accordionContent[i].classList.toggle('active-content');
+
+            if (headings[i].classList.contains('active')) {
+                accordionContent[i].style.maxHeight = accordionContent[i].scrollHeight + 20 + 'px';
+            } else {
+                accordionContent[i].style.maxHeight = "0";
+            }
+        });
     });
 
 });

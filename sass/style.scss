@@ -265,6 +265,7 @@ input:active{
         height:100%;
         & iframe{
             border-radius: 10px;
+            width:100% !important;
         }
     }
 }
@@ -336,7 +337,7 @@ input:active{
         justify-content: space-between;
         position: relative;
         margin-top: 67px; 
-        font-family: "MuliBold";   
+        font-family: "MuliBold";  
         .slick-prev{
             top:30%;
             left:0;
@@ -352,6 +353,10 @@ input:active{
         position: relative;
         transition: color .2s linear;
         cursor: pointer;
+        &:active,
+        &:focus{
+            outline:none;
+        }
         &:hover{
             color:$colorRed;
             &:after{
@@ -563,6 +568,66 @@ input, select{
         max-width:450px;
         display: block;
         margin: 0 auto;
+    }
+}
+.reviews-item{
+    margin-bottom: 20px;
+    .reviews__details{
+        display: flex;
+        align-items: center;
+        .rating-stars{
+            margin-right: 10px;
+            font-size: 18px;
+            color:$colorRed;
+        }
+        .rating-title{
+            font-size: 16px;
+            font-family: "MuliBold";
+            margin:0;
+        }
+    }
+}
+.rating-text{
+    @include font(14px, 18px, #000);
+    margin:0 auto;
+    padding: 0 15px;
+}
+.accordion{
+    &__header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: $colorBlue;
+        padding:5px 25px;
+        border-radius: $roundedTop;
+    }
+    &__heading{
+        @include font(15px, 18px, $colorWhite);
+        font-family:"MuliBold";
+    }
+    &__heading.active{
+        color:$colorRed;
+    }
+    &__block{
+        font-size: 16px;
+        max-height:0;
+        opacity:0;
+        transition: all .3s ease-out;
+        overflow:hidden;
+        margin:5px;
+    }
+    &__block.active-content{
+        opacity:1;
+        padding:10px;
+        overflow:visible;
+    }
+    &__btn{
+        border: solid $colorWhite;
+        border-width: 0 2px 2px 0;
+        display: inline-block;
+        padding: 3px;
+        transform: rotate(45deg);
+        cursor:pointer;
     }
 }
 .all-title{
@@ -782,7 +847,7 @@ input, select{
 .activity{
     padding: 60px 0 90px;
     &__title{
-        @include font(24px, 30px,$colorWhite);
+        @include font(24px, 30px);
         font-family: "MuliBold";
         margin-bottom: 57px;
     }
@@ -969,6 +1034,10 @@ input, select{
     .activities__item{
         width:23%;
     }
+    .free-room__item{
+        height:auto;
+        min-height:200px;
+    }
  }
 @media screen and (max-width: 990px){
     .container{
@@ -1007,6 +1076,15 @@ input, select{
         &__map{
             width:48%;
             margin:0;
+        }
+    }
+    .free-room__item{
+        min-height:230px;
+        .room-img{
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
         }
     }
     .package__item{
@@ -1065,6 +1143,7 @@ input, select{
         }
         &__item_cont{
             width:100%;
+            margin-bottom: 20px;
         }
         &__item_width{
             width:100%;
@@ -1097,14 +1176,14 @@ input, select{
       }
     .person{
         & &__name {
-        display: none;
+            display: none;
         }
         &__photo {
             margin-right: 10px;
             width:60px;
          }
         &__menu{
-        display: none;
+            display: none;
         }
     }
       .logo {
@@ -1155,15 +1234,17 @@ input, select{
             top:0;
             background-color: rgba(10, 34, 61, 0.9);
             z-index:1000;
-            padding: 45px 20px 25px;
-            width:100%;
+            padding: 35px 20px 15px;
             height:100vh;
+            min-height:580px;
+            width:100%;
             color:white;
             &__close{
                 position: absolute;
                 top:23px;
                 right:35px;
                 font-size: 30px;
+                color:inherit;
               }
             &__list{
                 list-style: none;
@@ -1171,8 +1252,8 @@ input, select{
                 padding:0;
                 .navbar-menu__link{
                     display: block;
-                    margin-bottom:20px;
-                    font-size: 18px;
+                    margin-bottom:15px;
+                    font-size: 16px;
                     text-decoration: none;
                     color:$colorWhite;
                     &:hover{
@@ -1186,7 +1267,7 @@ input, select{
         display: flex;
         margin:0;
         width:100%;
-        margin-bottom: 50px;
+        margin-bottom: 20px;
       }
       .search-form__input{
         width:70%;
@@ -1260,7 +1341,7 @@ input, select{
                     flex-direction: column;
           }
           &__title{
-              margin-bottom:10px;
+              margin-bottom:20px;
           }
       }
       .hotel__information {
@@ -1325,6 +1406,9 @@ input, select{
         }
     }
     .package__link{ 
+        &.slick-active{
+            outline:none;
+        }
         .slick-arrows{
             width: 4px;
             height:4px;
@@ -1343,9 +1427,37 @@ input, select{
     }
     .free-room__item{
         flex-direction: column;
+        .room-img{
+            width:100%;
+            border-radius: $roundedTop;
+        }
+        .free-room__info{
+            width:100%;
+            min-height:190px;
+            border-radius: $roundedBottom;
+            .room-details{
+                border-radius: $roundedBottom;
+                font-size: 18px;
+                padding:15px 10px;
+            }
+        }
     }
     .rooms-choise{
         flex-direction: column;
+        &__button{
+            margin-top: 10px;
+        }
+        .check-in{
+            width:60%;
+            margin-bottom: 15px;
+        }
+        .check-out{
+            width:60%;
+            margin-bottom: 15px;
+        }
+        .choise-details{
+            width:60%;
+        }
     }
 }
 
