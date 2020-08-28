@@ -903,13 +903,13 @@ input, select {
   -webkit-transition: all .3s ease-out;
   transition: all .3s ease-out;
   overflow: hidden;
-  margin: 5px;
 }
 
 .accordion__block.active-content {
   opacity: 1;
-  padding: 10px;
+  padding: 15px;
   overflow: visible;
+  margin: 5px 0;
 }
 
 .accordion__btn {
@@ -920,6 +920,9 @@ input, select {
   -webkit-transform: rotate(45deg);
           transform: rotate(45deg);
   cursor: pointer;
+  -webkit-transition: .2s linear;
+  transition: .2s linear;
+  margin-left: 5px;
 }
 
 .all-title {

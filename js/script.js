@@ -131,9 +131,11 @@ window.addEventListener("DOMContentLoaded", () => {
             accordionContent[i].classList.toggle('active-content');
 
             if (headings[i].classList.contains('active')) {
-                accordionContent[i].style.maxHeight = accordionContent[i].scrollHeight + 20 + 'px';
+                accordionContent[i].style.maxHeight = accordionContent[i].scrollHeight + 40 + 'px';
+                btns[i].style.transform = "rotate(-135deg)";
             } else {
                 accordionContent[i].style.maxHeight = "0";
+                btns[i].style.transform = "rotate(45deg)";
             }
         });
     });
