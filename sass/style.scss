@@ -19,6 +19,7 @@ $roundedRight: 0 8px 8px 0;
     src: url("../assets/fonts/Muli-Bold.ttf") format("truetype"); 
     font-style: normal; 
     font-weight: bold;
+    font-display: swap;
 }
      
 @font-face{
@@ -26,6 +27,7 @@ $roundedRight: 0 8px 8px 0;
     src: url("../assets/fonts/Muli-Light.ttf") format("truetype");
     font-style: normal; 
     font-weight: normal; 
+    font-display: swap;
 }
 
 body{
