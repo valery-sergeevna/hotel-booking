@@ -52,8 +52,7 @@ gulp.task('script', () => {
 //libs js
 gulp.task('js', () => {
     return gulp.src([
-        'node_modules/jquery/dist/jquery.js',
-        'node_modules/slick-carousel/slick/slick.js'
+        'node_modules/slick-carousel/slick/slick.min.js'
     ])
         .pipe(concat('libs.min.js'))
         .pipe(gulp.dest('src/js'))
@@ -62,7 +61,7 @@ gulp.task('js', () => {
 //ja concat
 gulp.task('js-concat', () => {
     return gulp.src('src/js/*.js')
-        .pipe(concat('script.js'))
+        .pipe(concat('script.min.js'))
         .pipe(gulp.dest('src/js'))
         .pipe(browserSync.reload({ stream: true }));
 });
@@ -89,9 +88,7 @@ gulp.task('export', () => {
         .pipe(gulp.dest('dist/assets'));
 
     //uglify script.js
-    const buildJs = gulp.src('src/js/script.js')
-        .pipe(rename("script.min.js"))
-        .pipe(uglifyEs())
+    const buildJs = gulp.src('src/js/script.min.js')
         .pipe(gulp.dest('dist/js'));
 });
 //watch
