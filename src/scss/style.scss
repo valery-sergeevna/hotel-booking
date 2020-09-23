@@ -24,7 +24,7 @@
 }
 
 body{
-    font-family: "Muli";
+    font-family: "Muli", sans-serif;
     box-sizing: border-box;
     margin:0;
     background-color: $colorBg;
@@ -52,6 +52,8 @@ input:active{
     text-align: center;
 }
 
+
+
 .header{
     width:100%;
     position: relative;
@@ -66,6 +68,11 @@ input:active{
             display: flex;
             justify-content: space-between;
             width:30%;
+        }
+        &__img{
+            width:20px;
+            height:20px;
+            margin-top: 7px;
         }
         &__item{
             display: flex;
@@ -121,6 +128,7 @@ input:active{
     &__button{
         display: flex;
         justify-content: center;
+        align-items: center;
         padding:0;
         background: $colorRed;
         width:20%;
@@ -128,6 +136,7 @@ input:active{
         border-radius: $roundedRight;
         & img{
             width:25%;
+            max-width:30px;
         }
     }
 }
@@ -241,7 +250,7 @@ input:active{
     &__photo{
         display: block;
         width:100%;
-        max-width:800px;
+        max-width:900px;
         opacity: 0.8;
     }
     &__information{
@@ -258,6 +267,8 @@ input:active{
     &__map{
         margin-top: 20px;
         height:100%;
+        width:100%;
+        padding: 0;
         & iframe{
             border-radius: 10px;
             width:100% !important;
@@ -753,7 +764,10 @@ input, select{
     &__photo{
         width:100%;
         max-width:120px;
-        border-radius: 100%;
+        
+        img{
+            border-radius: 50%;
+        }
     }
     &__text{
         width:48%;
