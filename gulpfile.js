@@ -12,6 +12,10 @@ const gulp = require('gulp'),
 gulp.task('clean', async () => {
     del.sync('dist');
 });
+//delete script.min.js
+gulp.task('cleanjs', async () => {
+    del.sync('src/js/script.min.js');
+});
 
 //scss
 gulp.task('scss', () => {
@@ -66,6 +70,7 @@ gulp.task('js-concat', () => {
         .pipe(browserSync.reload({ stream: true }));
 });
 
+
 //server
 gulp.task('browser-sync', () => {
     browserSync.init({
@@ -99,6 +104,5 @@ gulp.task('watch', () => {
 });
 
 gulp.task('build', gulp.series('clean', 'export'));
-gulp.task('jscript', gulp.series('js', 'js-concat'));
-
+gulp.task('jscript', gulp.series('js', 'cleanjs', 'js-concat'));
 gulp.task('default', gulp.parallel('css', 'scss', 'jscript', 'browser-sync', 'watch'));
