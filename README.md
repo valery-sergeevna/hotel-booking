@@ -3,5 +3,5 @@ Hotel Booking Details Page was laid out with html/scss/js/jquery. Configured pro
 
 Website template for Figma is available at https://dribbble.com/shots/11135604-Best-Tour-Plan-Hotel-Booking-Page-Figma-Freebie
 
-View website at [https://valery-sergeevna.github.io/hotel-booking/dist/] (https://valery-sergeevna.github.io/hotel-booking/dist/)
+View website at https://valery-sergeevna.github.io/hotel-booking/dist/
 
